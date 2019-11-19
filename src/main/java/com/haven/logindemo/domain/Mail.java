@@ -14,6 +14,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Mail implements Serializable {
+
+
+    private static final long serialVersionUID = 6321269928837707310L;
+
     private Integer id;
 
     private String email;

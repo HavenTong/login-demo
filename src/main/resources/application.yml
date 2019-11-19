@@ -4,6 +4,11 @@ spring:
     username: root
     password: Thwf1858
     driver-class-name: com.mysql.cj.jdbc.Driver
+  http:
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
   mail:
     protocol: smtp
     port: 465
