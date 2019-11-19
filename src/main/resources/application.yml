@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/login?useUnicode=yes&characterEncoding=true
+    username: root
+    password: Thwf1858
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mail:
+    protocol: smtp
+    port: 465
+    host: smtp.qq.com
+    username: 852092786@qq.com
+    password: gxntmgkfmqtkbcha
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+    from: 852092786@qq.com
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+    use-column-label: true
+logging:
+  level:
+    com.haven.logindemo.dao: debug
