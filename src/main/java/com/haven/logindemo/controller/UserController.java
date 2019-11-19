@@ -1,8 +1,8 @@
 package com.haven.logindemo.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.haven.logindemo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author HavenTong
@@ -12,8 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
 
-    @GetMapping("/hello")
-    public String hello(){
-        return "hello";
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/sendCode")
+    public String sendCheckedCode(@RequestParam("email") String email){
+        userService.sendCheckCode(email);
+        return "success";
     }
+
 }

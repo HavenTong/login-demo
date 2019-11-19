@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/login?useUnicode=yes&characterEncoding=true
+    url: jdbc:mysql://localhost:3306/login?useUnicode=yes&characterEncoding=utf8
     username: root
     password: Thwf1858
     driver-class-name: com.mysql.cj.jdbc.Driver
