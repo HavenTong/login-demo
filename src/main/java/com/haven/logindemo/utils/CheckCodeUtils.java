@@ -6,7 +6,7 @@ import java.util.Random;
  * @author HavenTong
  * @date 2019/11/19 8:38 下午
  */
-public class CheckCodeUtil {
+public class CheckCodeUtils {
 
     private static String seed = "0123456789";
 

@@ -5,6 +5,9 @@ import com.haven.logindemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author HavenTong
  * @date 2019/11/19 8:00 下午
@@ -28,6 +31,16 @@ public class UserController {
         return "register success";
     }
 
+    @GetMapping("/all")
+    public List<User> findAllUsers(){
+        return userService.findAllUsers();
+    }
+
+    @GetMapping("/login")
+    public Map<String, String> login(@RequestParam String email,
+                                     @RequestParam String password){
+        return userService.login(email, password);
+    }
 
 
 }

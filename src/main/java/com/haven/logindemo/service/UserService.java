@@ -4,15 +4,16 @@ import com.haven.logindemo.dao.MailDao;
 import com.haven.logindemo.dao.UserDao;
 import com.haven.logindemo.domain.Mail;
 import com.haven.logindemo.domain.User;
-import com.haven.logindemo.utils.CheckCodeUtil;
+import com.haven.logindemo.utils.CheckCodeUtils;
+import com.haven.logindemo.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author HavenTong
@@ -37,7 +38,7 @@ public class UserService {
 
 
     public void sendCheckCode(String email){
-        String checkCode = CheckCodeUtil.getCheckCode();
+        String checkCode = CheckCodeUtils.getCheckCode();
         mailDao.saveEmail(email, checkCode);
         String subject = "This is a registration email from Haven";
         String content = "<h1>Welcome to Note Hub!</h1><br><p>Your check code is "
@@ -57,6 +58,24 @@ public class UserService {
             userDao.saveUser(user);
             log.info("用户注册成功");
         }
+    }
+
+    public List<User> findAllUsers(){
+        return userDao.findAllUsers();
+    }
+
+    public Map<String, String> login(String email, String password){
+        User user = userDao.findUserByEmail(email);
+        Map<String, String> loginInfo = new HashMap<>();
+        if (user != null && encoder.matches(password, user.getPassword())){
+            String token = JwtUtils.createJwt(user);
+            loginInfo.put("token", token);
+            loginInfo.put("userName", user.getUsername());
+            loginInfo.put("email", user.getEmail());
+        } else {
+            loginInfo.put("message", "login failed");
+        }
+        return loginInfo;
     }
 
 }
