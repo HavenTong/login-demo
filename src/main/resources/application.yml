@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/login?useUnicode=yes&characterEncoding=utf8
     username: root
-    password: Thwf1858
+    password:
     driver-class-name: com.mysql.cj.jdbc.Driver
   http:
     encoding:
@@ -13,14 +13,14 @@ spring:
     protocol: smtp
     port: 465
     host: smtp.qq.com
-    username: 852092786@qq.com
-    password: gxntmgkfmqtkbcha
+    username:
+    password:
     properties:
       mail:
         smtp:
           ssl:
             enable: true
-    from: 852092786@qq.com
+    from: 
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
